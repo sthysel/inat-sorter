@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "image-sorter"
+version = "0.1.0"
+description = "iNaturalist Photo sorter"
+license = "MIT"
+authors = ["Thys Meintjes <sthysel@gmail.com>"]
+
+packages = [
+    { include = "inaturalist_sorter", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+Pillow = ">=8.0"
+click = "^8.1.7"
+
+
+[tool.poetry.group.dev.dependencies]
+black = ">=22.3"
+bumpversion = ">=0.6.0"
+pre-commit = ">=2.13.0"
+pytest = ">=6.2.4"
+ruff = ">=0.0.238"
+pytest-mock = "^3.11.1"
+
+[tool.poetry.scripts]
+inat-sort = 'inaturalist_sorter.sort:cli'
+
+
+[tool.poetry.group.vim.dependencies]
+neovim = ">=0.3.1"
+
+[tool.poetry.group.emacs.dependencies]
+python-lsp-server = {extras = ["all"], version = ">=1.3.3"}
+
+[build-system]
+requires = ["poetry-core>=3.1.1"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# Never enforce `E501` (line length violations).
+ignore = ["E501"]
