@@ -13,6 +13,7 @@ packages = [
 python = ">=3.11"
 Pillow = ">=8.0"
 click = "^8.1.7"
+geopy = "^2.4.0"
 
 
 [tool.poetry.group.dev.dependencies]
