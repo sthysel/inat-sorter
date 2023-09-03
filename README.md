@@ -1,7 +1,7 @@
 # iNaturalist Photo sorter (Version 0.1.0)
 
 
-[Cyanicula sericea](https://inaturalist-open-data.s3.amazonaws.com/photos/316378631/original.jpg)
+![Cyanicula sericea](https://inaturalist-open-data.s3.amazonaws.com/photos/316378631/original.jpg)
 
 I will go for a walk and take a bunch of photos of interesting shit along the
 way. Sometime after, I would download the previous few day's photos to a machine
