@@ -23,7 +23,7 @@ clustering is not perfect, it does do 90%+ of the work for me.
 
 # Usage
 
-```sh
+```shell
 $ inat-sort --help
 Usage: inat-sort [OPTIONS]
 
@@ -38,7 +38,7 @@ Options:
 
 Resulting in the flat input set to be sorted into
 
-```sh
+```shell
 $ tree inat-out
 inat-out/
 ├── cluster_1/
