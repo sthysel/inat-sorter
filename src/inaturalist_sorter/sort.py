@@ -44,7 +44,7 @@ def get_exif_data(
 def cluster_images(
     image_data,
     time_threshold: int = 30,
-    distance_threshold: int = 3,
+    distance_threshold: float = 5.0,
 ):
     clusters = []
     for img, (timestamp, coordinates) in image_data.items():
@@ -87,7 +87,22 @@ def cluster_images(
     default="./sorted_images",
     help="Destination folder to store sorted images.",
 )
-def cli(source: str, destination: str):
+@click.option(
+    "--gps-threshold",
+    default=5.0,
+    help="GPS accuracy threshold in radius meters",
+)
+@click.option(
+    "--time-threshold",
+    default=60,
+    help="Time window withing which a observation may reasonably be done",
+)
+def cli(
+    source: str,
+    destination: str,
+    gps_threshold: float,
+    time_threshold: int,
+):
     source_folder = Path(source)
     destination_folder = Path(destination)
 
@@ -104,10 +119,14 @@ def cli(source: str, destination: str):
         datetime_str, gps_info = get_exif_data(image_path)
         image_data[image_path] = (datetime_str, gps_info)
 
-    clustered_images = cluster_images(image_data)
+    clustered_images = cluster_images(
+        image_data,
+        distance_threshold=gps_threshold,
+        time_threshold=time_threshold,
+    )
 
     for idx, cluster in enumerate(clustered_images):
-        folder_path = destination_folder / f"Cluster_{idx+1}"
+        folder_path = destination_folder / f"cluster_{idx+1}"
         folder_path.mkdir(parents=True, exist_ok=True)
 
         for image_path in cluster:
